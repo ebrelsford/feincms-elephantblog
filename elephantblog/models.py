@@ -8,6 +8,7 @@ from feincms import translations
 from feincms.admin import item_editor
 from feincms.management.checker import check_database_schema
 from feincms.models import Base
+from feincms.module.mixins import ContentModelMixin
 from feincms.utils.managers import ActiveAwareContentManagerMixin
 from feincms.utils.queryset_transform import TransformQuerySet
 try:
@@ -83,7 +84,7 @@ EntryManager.add_to_active_filters(
 
 
 
-class Entry(Base):
+class Entry(ContentModelMixin, Base):
     is_active = models.BooleanField(_('is active'), default=True, db_index=True)
     is_featured = models.BooleanField(_('is featured'), default=False, db_index=True)
 
